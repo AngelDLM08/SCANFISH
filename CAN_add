@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Enter name of CAN"
+read C
+# ip link add dev $C type vcan
+# ifconfig $C up
+
+echo "CAN port $C started!"
