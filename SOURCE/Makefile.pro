@@ -6,9 +6,9 @@ CONFIG -= debug_and_release app_bundle lib_bundle
 CONFIG += release 
 QT = core gui
 
-SOURCES += gsConnect.cpp MainWindow.cpp Connection.cpp canio.cpp cannet.cpp gsMessageEditor.cpp main.cpp msg.cpp Receive.cpp gsReceive.cpp gsReceiveSL.cpp msgspv.cpp MainWindowTab.cpp gsTransmit.cpp controller.cpp Transmit.cpp generalScreen.cpp MessageEditor.cpp gsTransmitSL.cpp
+SOURCES += src/gsConnect.cpp src/MainWindow.cpp src/Connection.cpp src/canio.cpp src/cannet.cpp src/gsMessageEditor.cpp src/main.cpp src/msg.cpp src/Receive.cpp src/gsReceive.cpp src/gsReceiveSL.cpp src/msgspv.cpp src/MainWindowTab.cpp src/gsTransmit.cpp src/controller.cpp src/Transmit.cpp src/generalScreen.cpp src/MessageEditor.cpp src/gsTransmitSL.cpp
 
-HEADERS += sferror.h controller.h MessageEditor.h Receive.h generalScreen.h gsReceive.h gsTransmitSL.h Transmit.h cannet.h msg.h gsMessageEditor.h Connection.h msgspv.h canlistener.h gsConnect.h MainWindowTab.h gsTransmit.h MainWindow.h gsReceiveSL.h canio.h
+HEADERS += headers/sferror.h headers/controller.h headers/MessageEditor.h headers/Receive.h headers/generalScreen.h headers/gsReceive.h headers/gsTransmitSL.h headers/Transmit.h headers/cannet.h headers/msg.h headers/gsMessageEditor.h headers/Connection.h headers/msgspv.h headers/canlistener.h headers/gsConnect.h headers/MainWindowTab.h headers/gsTransmit.h headers/MainWindow.h headers/gsReceiveSL.h headers/canio.h
 
 FORMS +=
 RESOURCES +=
