@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# modprobe vcan
-# ip link add type vcan
+modprobe vcan
+ip link add type vcan
 echo "CAN service started! Now add CAN ports via CAN_add"
