@@ -42,6 +42,7 @@ public:
 
 private slots:
     void CommitClicked();
+    void GenerateClicked();
     void EnableCommitButton();
     void ChangeDLC();
     void SendSigSl();

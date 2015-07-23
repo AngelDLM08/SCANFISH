@@ -2,9 +2,15 @@
 #include "headers/Transmit.h"
 #include "headers/generalScreen.h"
 
+#include <ctime>
+#include <string.h>
+
+
 
 MessageEditor::MessageEditor (QWidget *MesEd)
 {
+   srand(time(0));
+
    f=0;
    Contr=Controller::getController();;
 
@@ -118,6 +124,8 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    connect (CommitButton, SIGNAL(clicked()),this,SLOT(CommitClicked()));
    connect (SendButton, SIGNAL(clicked()),this,
            SLOT(SendSigSl()));
+/*generate button*/
+   connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
 }
 
 void MessageEditor::CommitClicked()
@@ -151,6 +159,21 @@ void MessageEditor::CommitClicked()
     for (i=0;i<8;i++)
        bLineEdit_DATA[i]->setText(text);
 }
+
+/*Generate button clicked*/
+void MessageEditor::GenerateClicked()
+{
+// int r = rand() % 100
+
+
+// WTF???
+// just put the integer from random to bLineEdit_DATA[i], please
+//      std::string str;
+//    for (i=0;i<8;i++){
+//	str.Format("%d",rand()%100);
+//      bLineEdit_DATA[i]->setText(str);
+//    };
+};
 
 void MessageEditor :: EnableCommitButton()
 {
