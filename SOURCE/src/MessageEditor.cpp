@@ -32,6 +32,10 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    CommitButton=new QPushButton ("Commit");
    CommitButton->setFixedSize(95,27);
 
+/*generate button*/
+   GenerateButton=new QPushButton ("Generate");
+   GenerateButton->setFixedSize(95,27);
+
    CommitButton->setEnabled(false);
    SendButton->setEnabled(false);
 
@@ -77,6 +81,7 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    DATA_Widget->setFixedSize(400,28);
    MesEditLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
    MesEditLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
+   MesEditLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
 
    for (i=0;i<13;i++)
        MesEditLayout->setColumnStretch(i,100);

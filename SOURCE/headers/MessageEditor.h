@@ -64,6 +64,9 @@ private:
     QPushButton *CommitButton;
     QSpinBox *DLC_SpinBox;
 
+/*generate button*/
+    QPushButton *GenerateButton;
+
     QRegExp *RegDLC;
     QRegExp *RegID;
     QRegExp *RegDATA;
