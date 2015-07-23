@@ -10,10 +10,10 @@
 #include <QTabBar>
 #include <QToolButton>
 
-#include "generalScreen.h"
-#include "MainWindow.h"
-#include "controller.h"
-#include "MainWindowTab.h"
+#include "headers/generalScreen.h"
+#include "headers/MainWindow.h"
+#include "headers/controller.h"
+#include "headers/MainWindowTab.h"
 
 void MsgHandler(QtMsgType type,const char *msg)
 {

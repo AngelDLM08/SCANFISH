@@ -1,24 +1,47 @@
 TEMPLATE = app
-DESTDIR = dist/Release/GNU-Linux-x86
-TARGET = SOURCE
-VERSION = 1.0.0
-CONFIG -= debug_and_release app_bundle lib_bundle
-CONFIG += release 
-QT = core gui
-
-SOURCES += src/gsConnect.cpp src/MainWindow.cpp src/Connection.cpp src/canio.cpp src/cannet.cpp src/gsMessageEditor.cpp src/main.cpp src/msg.cpp src/Receive.cpp src/gsReceive.cpp src/gsReceiveSL.cpp src/msgspv.cpp src/MainWindowTab.cpp src/gsTransmit.cpp src/controller.cpp src/Transmit.cpp src/generalScreen.cpp src/MessageEditor.cpp src/gsTransmitSL.cpp
-
-HEADERS += headers/sferror.h headers/controller.h headers/MessageEditor.h headers/Receive.h headers/generalScreen.h headers/gsReceive.h headers/gsTransmitSL.h headers/Transmit.h headers/cannet.h headers/msg.h headers/gsMessageEditor.h headers/Connection.h headers/msgspv.h headers/canlistener.h headers/gsConnect.h headers/MainWindowTab.h headers/gsTransmit.h headers/MainWindow.h headers/gsReceiveSL.h headers/canio.h
-
-FORMS +=
-RESOURCES +=
-TRANSLATIONS +=
-OBJECTS_DIR = build/Release/GNU-Linux-x86
-MOC_DIR = 
-RCC_DIR = 
-UI_DIR = 
-QMAKE_CC = gcc
-QMAKE_CXX = g++
-DEFINES += 
-INCLUDEPATH += 
-LIBS += 
+TARGET = ScanFish
+QT += gui widgets
+DESTDIR = Release/GNU-Linux-x86
+OBJECTS_DIR = build
+MOC_DIR = build
+UI_DIR = build
+HEADERS = headers/canio.h	\
+headers/canlistener.h	\
+headers/cannet.h	\
+headers/Connection.h	\
+headers/controller.h	\
+headers/generalScreen.h \
+headers/gsConnect.h	\
+headers/gsMessageEditor.h \
+headers/gsReceive.h	\
+headers/gsReceiveSL.h	\
+headers/gsTransmit.h	\
+headers/gsTransmitSL.h	\
+headers/MainWindow.h	\
+headers/MainWindowTab.h	\
+headers/MessageEditor.h	\
+headers/msg.h	\
+headers/msgspv.h	\
+headers/Receive.h	\
+headers/sferror.h	\
+headers/Transmit.h	
+SOURCES = src/canio.cpp	\
+src/cannet.cpp \
+src/Connection.cpp \
+src/controller.cpp \
+src/generalScreen.cpp \
+src/gsConnect.cpp \
+src/gsMessageEditor.cpp \
+src/gsReceive.cpp \
+src/gsReceiveSL.cpp \
+src/gsTransmit.cpp \
+src/gsTransmitSL.cpp \
+src/main.cpp \
+src/MainWindow.cpp \
+src/MainWindowTab.cpp \
+src/MessageEditor.cpp \
+src/msg.cpp \
+src/msgspv.cpp \
+src/Receive.cpp \
+src/Transmit.cpp	
+CONFIG += qt warn_on release

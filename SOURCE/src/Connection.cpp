@@ -1,5 +1,5 @@
-#include "Connection.h"
-#include "controller.h"
+#include "headers/Connection.h"
+#include "headers/controller.h"
 
 Connection::Connection(QWidget *Con,CanListener *mcanl) : QWidget (Con)
 {

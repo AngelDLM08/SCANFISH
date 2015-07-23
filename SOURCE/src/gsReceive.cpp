@@ -1,4 +1,4 @@
-#include "gsReceive.h"
+#include "headers/gsReceive.h"
 
 GSReceive::GSReceive()
 {

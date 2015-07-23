@@ -1,5 +1,5 @@
-#include "MainWindow.h"
-#include "controller.h"
+#include "headers/MainWindow.h"
+#include "headers/controller.h"
 #include <stdio.h>
 #include <string.h>
 #include <QTime>

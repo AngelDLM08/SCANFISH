@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "gsTransmit.h"
-#include "controller.h"
+#include "headers/gsTransmit.h"
+#include "headers/controller.h"
 
 
 GSTransmit::GSTransmit()

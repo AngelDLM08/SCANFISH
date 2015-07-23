@@ -1,5 +1,5 @@
-#include "cannet.h"
-#include "generalScreen.h"
+#include "headers/cannet.h"
+#include "headers/generalScreen.h"
 #include <stdio.h>
 #include <unistd.h>
 

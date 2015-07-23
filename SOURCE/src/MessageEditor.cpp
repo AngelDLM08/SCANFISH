@@ -1,6 +1,6 @@
-#include "MessageEditor.h"
-#include "Transmit.h"
-#include "generalScreen.h"
+#include "headers/MessageEditor.h"
+#include "headers/Transmit.h"
+#include "headers/generalScreen.h"
 
 
 MessageEditor::MessageEditor (QWidget *MesEd)

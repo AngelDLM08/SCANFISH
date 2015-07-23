@@ -1,4 +1,4 @@
-#include "Transmit.h"
+#include "headers/Transmit.h"
 #include <QTime>
 Transmit :: Transmit(QWidget *Trans) : QGroupBox (Trans)
 {

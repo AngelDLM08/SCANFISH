@@ -1,4 +1,4 @@
-#include "Receive.h"
+#include "headers/Receive.h"
 #include <QTime>
 #include <QHeaderView>
 

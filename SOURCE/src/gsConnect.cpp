@@ -1,5 +1,5 @@
-#include "gsConnect.h"
-#include "generalScreen.h"
+#include "headers/gsConnect.h"
+#include "headers/generalScreen.h"
 
 GSConnect::GSConnect()
 {

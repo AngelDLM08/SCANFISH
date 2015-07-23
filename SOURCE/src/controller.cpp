@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "headers/controller.h"
 
 Controller *Controller::singleton = NULL;
 

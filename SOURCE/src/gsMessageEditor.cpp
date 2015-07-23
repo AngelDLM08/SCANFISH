@@ -1,5 +1,5 @@
-#include "gsMessageEditor.h"
-#include "generalScreen.h"
+#include "headers/gsMessageEditor.h"
+#include "headers/generalScreen.h"
 #include <stdio.h>
 
 
