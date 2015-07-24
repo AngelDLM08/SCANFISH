@@ -214,6 +214,7 @@ void MessageEditor::CommitClicked()
 void MessageEditor::GenerateClicked()
 {
 QString text;
+SendButton->setEnabled(true);
 //ID
 if (cgenID->isChecked()) {
 	int RID = rand() % 100000000;
