@@ -59,7 +59,7 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////
 void MessageEditor::buildCreateMesTab()
 {
    createMesLayout = new QGridLayout;
@@ -168,13 +168,13 @@ void MessageEditor::buildCreateMesTab()
    createMesLayout->setSpacing(13);
 }
 
-
+/////////////////////////////////////////////////////////////////////////
 void MessageEditor::buildSendOptionsTab()
 {
    sendOptionsLayout = new QGridLayout;
 }
 
-
+///////////////////////////////////////////////////////////////////////////
 void MessageEditor::CommitClicked()
 {
     f=1;
@@ -207,28 +207,52 @@ void MessageEditor::CommitClicked()
        bLineEdit_DATA[i]->setText(text);
 }
 
-/*Generate button clicked*/
+//Generate button clicked///////////////////////////////////////////////////
 void MessageEditor::GenerateClicked()
 {
-
+QString text;
 //ID
 if (cgenID->isChecked()) {
-	
+	int RID = rand() % 100000000;
+
+	text = QString("%1").arg(RID,0,10);
+	text=text.toUpper();
+	tLabel_fID->setText(text);
 };
 
 //DLC
 
 if (cgenDLC->isChecked()) {
-	
+	int RDLC = 1 + rand() % 8;
+
+	int value = RDLC;
+    	text=QVariant(value).toString();
+    	text=text.toUpper();
+    	tLabel_fDLC->setText(text);
+
 };
 
 //DATA
 
 if (cgenDATA->isChecked()) {
+
+	    
+	    for (i=0;i<8;i++)
+	    {
+		int RDATA = rand() % 256;
+	        text = QString("%1").arg(RDATA,0,16);
+	        text=text.toUpper();
+	       
+	        if (RDATA<16)
+	            tLabel_fDATA[i]->setText("0"+text);
+	        else
+	            tLabel_fDATA[i]->setText(text);
+	    }
+	    
 	
 };
 
-
+text = "";
 
 
 
@@ -253,7 +277,7 @@ if (cgenDATA->isChecked()) {
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////
 void MessageEditor :: EnableCommitButton()
 {
     bool LE_ID = bLineEdit_ID->text().isEmpty();
