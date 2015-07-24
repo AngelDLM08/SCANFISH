@@ -160,19 +160,6 @@ void MessageEditor::buildCreateMesTab()
 	genLayout->addWidget(GenerateButton);
 	
 
-	
-	
-//	cgenID->setParent(generate_Widget);
-//	cgenID->move(50,0);
-//	cgenDLC->setParent(generate_Widget);
-//	cgenDLC->move(100,0);
-//	cgenDATA->setParent(generate_Widget);
-//	cgenDATA->move(150,0);
-
-
-//	GenerateButton->setParent(generate_Widget);
-//	GenerateButton->move(50,0);
-
 
 	generate_Widget->setLayout(genLayout);
 	generate_Widget->show();
@@ -193,7 +180,7 @@ void MessageEditor::buildCreateMesTab()
    createMesLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
    createMesLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
 
-//   createMesLayout->addWidget(generate_Widget,3,1,Qt::AlignLeft);
+  createMesLayout->addWidget(generate_Widget,3,1,Qt::AlignLeft);
 
 
 
