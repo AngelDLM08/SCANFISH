@@ -53,7 +53,7 @@ public:
 
 private slots:
     void CommitClicked();
-    //void GenerateClicked();
+    void GenerateClicked();
     void EnableCommitButton();
     void ChangeDLC();
     void SendSigSl();
@@ -75,7 +75,7 @@ private:
     QLineEdit *bLineEdit_DATA1;
     QPushButton *CommitButton;
     QSpinBox *DLC_SpinBox;
-//    QPushButton *GenerateButton;
+    QPushButton *GenerateButton;
 
     QRegExp *RegDLC;
     QRegExp *RegID;
@@ -86,6 +86,8 @@ private:
 
     QWidget *DATA_Widget;
     QWidget *fDATA_Widget;
+    QWidget *generate_Widget;
+
     QTabWidget *createMesTab;
     QTabWidget *sendOptionsTab;
 

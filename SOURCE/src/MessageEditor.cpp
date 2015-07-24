@@ -16,6 +16,8 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    createMesTabWidget=new QWidget;
    sendOptionsTabWidget=new QWidget;
 
+
+
    createMesTab=new QTabWidget;
    sendOptionsTab=new QTabWidget;
 
@@ -54,7 +56,7 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    connect (CommitButton, SIGNAL(clicked()),this,SLOT(CommitClicked()));
    connect (SendButton, SIGNAL(clicked()),this,
            SLOT(SendSigSl()));
-//   connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
+   connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
 }
 
 
@@ -86,8 +88,8 @@ void MessageEditor::buildCreateMesTab()
    SendButton->setEnabled(false);
    
    /*generate button*/
-//   GenerateButton=new QPushButton ("Generate");
-//   GenerateButton->setFixedSize(95,27);
+   GenerateButton=new QPushButton ("Generate");
+   GenerateButton->setFixedSize(95,27);
 
    DLC_SpinBox = new QSpinBox;
    DLC_SpinBox->setFixedSize(40,27);
@@ -129,9 +131,42 @@ void MessageEditor::buildCreateMesTab()
        bLineEdit_DATA[i]->move(i*50,0);
    }
    DATA_Widget->setFixedSize(400,28);
+
+//generate widget
+//   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
+
+
+   generate_Widget = new QWidget;
+//   for (i=0;i<8;i++)
+//       tLabel_fDATA[i]->setFixedSize(30,27);
+//   for (i=0;i<8;i++)
+//   {
+//       tLabel_fDATA[i]->setParent(fDATA_Widget);
+//      tLabel_fDATA[i]->move(i*50,0);
+//   }
+//   fDATA_Widget->setFixedSize(400,28);
+
+	GenerateButton->setParent(generate_Widget);
+	GenerateButton->move(250,0);
+
+   createMesLayout->addWidget(generate_Widget,1,5,1,8,Qt::AlignLeft);
+
+
+
+
+
+
+
+
+
+
+
    createMesLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
    createMesLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
 //   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
+   createMesLayout->addWidget(generateMesWidget,3,1,Qt::AlignLeft);
+
+
 
    for (i=0;i<13;i++)
        createMesLayout->setColumnStretch(i,100);
@@ -179,8 +214,8 @@ void MessageEditor::CommitClicked()
 }
 
 /*Generate button clicked*/
-//void MessageEditor::GenerateClicked()
-//{
+void MessageEditor::GenerateClicked()
+{
 // int r = rand() % 100
 
 
@@ -191,7 +226,7 @@ void MessageEditor::CommitClicked()
 // str.Format("%d",rand()%100);
 // bLineEdit_DATA[i]->setText(str);
 // };
-//};
+};
 
 
 
