@@ -139,17 +139,7 @@ void MessageEditor::buildCreateMesTab()
 
 //generate widget
 
-//   createMesLayout->addWidget(GenerateButton,4,13,Qt::AlignLeft);//
-
    generate_Widget = new QWidget;
-//   for (i=0;i<8;i++)
-//       tLabel_fDATA[i]->setFixedSize(30,27);
-//   for (i=0;i<8;i++)
-//   {
-//       tLabel_fDATA[i]->setParent(fDATA_Widget);
-//      tLabel_fDATA[i]->move(i*50,0);
-//   }
-//   fDATA_Widget->setFixedSize(400,28);
 
 
 	genLayout = new QHBoxLayout;
@@ -163,18 +153,6 @@ void MessageEditor::buildCreateMesTab()
 
 	generate_Widget->setLayout(genLayout);
 	generate_Widget->show();
-
-
- //  createMesLayout->addWidget(generate_Widget,1,5,1,8,Qt::AlignLeft);
-
-
-
-
-
-
-
-
-
 
 
    createMesLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
@@ -232,6 +210,29 @@ void MessageEditor::CommitClicked()
 /*Generate button clicked*/
 void MessageEditor::GenerateClicked()
 {
+
+//ID
+if (cgenID->isChecked()) {
+	
+};
+
+//DLC
+
+if (cgenDLC->isChecked()) {
+	
+};
+
+//DATA
+
+if (cgenDATA->isChecked()) {
+	
+};
+
+
+
+
+
+
 // int r = rand() % 100
 
 
@@ -242,7 +243,13 @@ void MessageEditor::GenerateClicked()
 // str.Format("%d",rand()%100);
 // bLineEdit_DATA[i]->setText(str);
 // };
+
+
+
+
 };
+
+
 
 
 
