@@ -4,6 +4,8 @@
 
 #include <ctime>
 
+int GDLC=8;
+
 MessageEditor::MessageEditor (QWidget *MesEd)
 {
    srand(time(0));
@@ -185,6 +187,7 @@ void MessageEditor::CommitClicked()
     tLabel_fID->setText(text);
 
     int value = DLC_SpinBox->value();
+/*!*/ GDLC=value;
     text=QVariant(value).toString();
     text=text.toUpper();
     tLabel_fDLC->setText(text);
@@ -224,7 +227,7 @@ if (cgenID->isChecked()) {
 
 if (cgenDLC->isChecked()) {
 	int RDLC = 1 + rand() % 8;
-
+/*!*/	int GDLC = RDLC;
 	int value = RDLC;
     	text=QVariant(value).toString();
     	text=text.toUpper();
@@ -253,23 +256,6 @@ if (cgenDATA->isChecked()) {
 };
 
 text = "";
-
-
-
-
-// int r = rand() % 100
-
-
-// WTF???
-// just put the integer from random to bLineEdit_DATA[i], please
-// std::string str;
-// for (i=0;i<8;i++){
-// str.Format("%d",rand()%100);
-// bLineEdit_DATA[i]->setText(str);
-// };
-
-
-
 
 };
 
