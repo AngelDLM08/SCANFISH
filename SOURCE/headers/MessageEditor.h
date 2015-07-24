@@ -13,6 +13,7 @@
 #include <QRegExpValidator>
 #include <QRegExp>
 #include <QVariant>
+#include <QTabWidget>
 #include <QTableWidgetItem>
 #include <QSpinBox>
 #include <QSize>
@@ -21,13 +22,23 @@
 #include <QTime>
 #include <stdio.h>
 
-#include "controller.h"
-#include "msg.h"
+#include "headers/controller.h"
+#include "headers/msg.h"
 
 class MessageEditor : public QGroupBox
 {
     Q_OBJECT
-    QGridLayout *MesEditLayout;
+
+    QGridLayout *createMesLayout;
+    QGridLayout *sendOptionsLayout;
+
+    QGridLayout *MainMesEditLayout;
+
+    QWidget *createMesTabWidget;
+    QWidget *sendOptionsTabWidget;
+
+    void buildCreateMesTab();
+    void buildSendOptionsTab();
 
 public:
     MessageEditor (QWidget *MesEd);
@@ -42,7 +53,7 @@ public:
 
 private slots:
     void CommitClicked();
-    void GenerateClicked();
+    //void GenerateClicked();
     void EnableCommitButton();
     void ChangeDLC();
     void SendSigSl();
@@ -64,9 +75,7 @@ private:
     QLineEdit *bLineEdit_DATA1;
     QPushButton *CommitButton;
     QSpinBox *DLC_SpinBox;
-
-/*generate button*/
-    QPushButton *GenerateButton;
+//    QPushButton *GenerateButton;
 
     QRegExp *RegDLC;
     QRegExp *RegID;
@@ -77,6 +86,8 @@ private:
 
     QWidget *DATA_Widget;
     QWidget *fDATA_Widget;
+    QTabWidget *createMesTab;
+    QTabWidget *sendOptionsTab;
 
     int i,k,s,d,f;
     QLineEdit *bLineEdit_DATA[8];

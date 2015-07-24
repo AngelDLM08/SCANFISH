@@ -3,20 +3,64 @@
 #include "headers/generalScreen.h"
 
 #include <ctime>
-#include <string.h>
-
-
 
 MessageEditor::MessageEditor (QWidget *MesEd)
 {
    srand(time(0));
-
    f=0;
    Contr=Controller::getController();;
 
    setTitle("    Message Editor");
 
-   MesEditLayout = new QGridLayout;
+   MainMesEditLayout=new QGridLayout;
+   createMesTabWidget=new QWidget;
+   sendOptionsTabWidget=new QWidget;
+
+   createMesTab=new QTabWidget;
+   sendOptionsTab=new QTabWidget;
+
+   buildCreateMesTab();
+   buildSendOptionsTab();
+
+   createMesTabWidget->setLayout(createMesLayout);
+   createMesTab->addTab(createMesTabWidget,  " Create Message ");
+   createMesTab->addTab(sendOptionsTabWidget,"  Send Options  ");
+   MainMesEditLayout->addWidget(createMesTab);
+   setLayout(MainMesEditLayout);
+
+   QValidator *val = new QIntValidator(0,536870911,this);
+   bLineEdit_ID->setValidator(val);
+
+   QRegExp RegDATA("[0-9a-fA-F][0-9a-fA-F]");
+   DATA_Validator = new QRegExpValidator(RegDATA,this);
+   for(i=0;i<8;i++)
+       bLineEdit_DATA[i]->setValidator(DATA_Validator);
+
+   for (i=0;i<8;i++)
+       bLineEdit_DATA[i]->cursorForward(false,0);
+
+   k=DLC_SpinBox->value();
+
+   connect (DLC_SpinBox, SIGNAL(valueChanged(const QString)),
+           this,SLOT(ChangeDLC()));
+
+   connect (bLineEdit_ID, SIGNAL(textChanged(const QString &)),
+           this,SLOT(EnableCommitButton()));
+
+   for (i=0;i<k;i++)
+       connect (bLineEdit_DATA[i], SIGNAL(textChanged(const QString &)),
+           this,SLOT(EnableCommitButton()));
+
+   connect (CommitButton, SIGNAL(clicked()),this,SLOT(CommitClicked()));
+   connect (SendButton, SIGNAL(clicked()),this,
+           SLOT(SendSigSl()));
+//   connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
+}
+
+
+void MessageEditor::buildCreateMesTab()
+{
+   createMesLayout = new QGridLayout;
 
    tLabel_ID=new QLabel("ID:");
    tLabel_fID=new QLabel("");
@@ -38,12 +82,12 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    CommitButton=new QPushButton ("Commit");
    CommitButton->setFixedSize(95,27);
 
-/*generate button*/
-   GenerateButton=new QPushButton ("Generate");
-   GenerateButton->setFixedSize(95,27);
-
    CommitButton->setEnabled(false);
    SendButton->setEnabled(false);
+   
+   /*generate button*/
+//   GenerateButton=new QPushButton ("Generate");
+//   GenerateButton->setFixedSize(95,27);
 
    DLC_SpinBox = new QSpinBox;
    DLC_SpinBox->setFixedSize(40,27);
@@ -51,11 +95,11 @@ MessageEditor::MessageEditor (QWidget *MesEd)
    DLC_SpinBox->setMaximum(8);
    DLC_SpinBox->setValue(8);
 
-   MesEditLayout->addWidget(tLabel_ID,1,0,Qt::AlignLeft);
-   MesEditLayout->addWidget(tLabel_fID,1,1,Qt::AlignLeft);
-   MesEditLayout->addWidget(tLabel_DLC,1,2,Qt::AlignLeft);
-   MesEditLayout->addWidget(tLabel_fDLC,1,3,Qt::AlignLeft);
-   MesEditLayout->addWidget(tLabel_DATA,1,4,Qt::AlignLeft);
+   createMesLayout->addWidget(tLabel_ID,1,0,Qt::AlignLeft);
+   createMesLayout->addWidget(tLabel_fID,1,1,Qt::AlignLeft);
+   createMesLayout->addWidget(tLabel_DLC,1,2,Qt::AlignLeft);
+   createMesLayout->addWidget(tLabel_fDLC,1,3,Qt::AlignLeft);
+   createMesLayout->addWidget(tLabel_DATA,1,4,Qt::AlignLeft);
 
    fDATA_Widget = new QWidget;
    for (i=0;i<8;i++)
@@ -66,16 +110,16 @@ MessageEditor::MessageEditor (QWidget *MesEd)
        tLabel_fDATA[i]->move(i*50,0);
    }
    fDATA_Widget->setFixedSize(400,28);
-   MesEditLayout->addWidget(fDATA_Widget,1,5,1,8,Qt::AlignLeft);
-   MesEditLayout->addWidget(SendButton,1,13,Qt::AlignLeft);
+   createMesLayout->addWidget(fDATA_Widget,1,5,1,8,Qt::AlignLeft);
+   createMesLayout->addWidget(SendButton,1,13,Qt::AlignLeft);
 
-   MesEditLayout->addWidget(bLabel_ID,2,0,Qt::AlignLeft);
+   createMesLayout->addWidget(bLabel_ID,2,0,Qt::AlignLeft);
    bLineEdit_ID->setFixedSize(80,27);
-   MesEditLayout->addWidget(bLineEdit_ID,2,1,Qt::AlignLeft);
-   MesEditLayout->addWidget(bLabel_DLC,2,2,Qt::AlignLeft);
-   MesEditLayout->addWidget(DLC_SpinBox,2,3,Qt::AlignLeft);
-   MesEditLayout->addWidget(bLabel_DATA,2,4,Qt::AlignLeft);
-  
+   createMesLayout->addWidget(bLineEdit_ID,2,1,Qt::AlignLeft);
+   createMesLayout->addWidget(bLabel_DLC,2,2,Qt::AlignLeft);
+   createMesLayout->addWidget(DLC_SpinBox,2,3,Qt::AlignLeft);
+   createMesLayout->addWidget(bLabel_DATA,2,4,Qt::AlignLeft);
+
    DATA_Widget = new QWidget;
    for (i=0;i<8;i++)
        bLineEdit_DATA[i]->setFixedSize(30,27);
@@ -85,48 +129,22 @@ MessageEditor::MessageEditor (QWidget *MesEd)
        bLineEdit_DATA[i]->move(i*50,0);
    }
    DATA_Widget->setFixedSize(400,28);
-   MesEditLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
-   MesEditLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
-   MesEditLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
+   createMesLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
+   createMesLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
+//   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
 
    for (i=0;i<13;i++)
-       MesEditLayout->setColumnStretch(i,100);
+       createMesLayout->setColumnStretch(i,100);
 
-   MesEditLayout->setSpacing(13);
-
-   setLayout(MesEditLayout);
-
-
-   QValidator *val = new QIntValidator(0,536870911,this);
-   bLineEdit_ID->setValidator(val);
-
-   QRegExp RegDATA("[0-9a-fA-F][0-9a-fA-F]");
-   DATA_Validator = new QRegExpValidator(RegDATA,this);
-   for(i=0;i<8;i++)
-       bLineEdit_DATA[i]->setValidator(DATA_Validator);
-
-   for (i=0;i<8;i++)
-       bLineEdit_DATA[i]->cursorForward(false,0);
-
-   k=DLC_SpinBox->value();
-
-   connect (DLC_SpinBox, SIGNAL(valueChanged(const QString)),
-           this,SLOT(ChangeDLC()));
-   
-
-   connect (bLineEdit_ID, SIGNAL(textChanged(const QString &)),
-           this,SLOT(EnableCommitButton()));
-
-   for (i=0;i<k;i++)
-       connect (bLineEdit_DATA[i], SIGNAL(textChanged(const QString &)),
-           this,SLOT(EnableCommitButton()));
-
-   connect (CommitButton, SIGNAL(clicked()),this,SLOT(CommitClicked()));
-   connect (SendButton, SIGNAL(clicked()),this,
-           SLOT(SendSigSl()));
-/*generate button*/
-   connect (GenerateButton, SIGNAL(clicked()),this,SLOT(GenerateClicked()));
+   createMesLayout->setSpacing(13);
 }
+
+
+void MessageEditor::buildSendOptionsTab()
+{
+   sendOptionsLayout = new QGridLayout;
+}
+
 
 void MessageEditor::CommitClicked()
 {
@@ -161,19 +179,22 @@ void MessageEditor::CommitClicked()
 }
 
 /*Generate button clicked*/
-void MessageEditor::GenerateClicked()
-{
+//void MessageEditor::GenerateClicked()
+//{
 // int r = rand() % 100
 
 
 // WTF???
 // just put the integer from random to bLineEdit_DATA[i], please
-//      std::string str;
-//    for (i=0;i<8;i++){
-//	str.Format("%d",rand()%100);
-//      bLineEdit_DATA[i]->setText(str);
-//    };
-};
+// std::string str;
+// for (i=0;i<8;i++){
+// str.Format("%d",rand()%100);
+// bLineEdit_DATA[i]->setText(str);
+// };
+//};
+
+
+
 
 void MessageEditor :: EnableCommitButton()
 {
