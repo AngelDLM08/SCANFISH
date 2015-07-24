@@ -91,6 +91,11 @@ void MessageEditor::buildCreateMesTab()
    GenerateButton=new QPushButton ("Generate");
    GenerateButton->setFixedSize(95,27);
 
+   cgenID=new QCheckBox("Generate ID");
+   cgenDLC=new QCheckBox("Generate DLC");
+   cgenDATA=new QCheckBox("Generate DATA");
+
+
    DLC_SpinBox = new QSpinBox;
    DLC_SpinBox->setFixedSize(40,27);
    DLC_SpinBox->setMinimum(1);
@@ -133,8 +138,8 @@ void MessageEditor::buildCreateMesTab()
    DATA_Widget->setFixedSize(400,28);
 
 //generate widget
-//   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
 
+//   createMesLayout->addWidget(GenerateButton,4,13,Qt::AlignLeft);//
 
    generate_Widget = new QWidget;
 //   for (i=0;i<8;i++)
@@ -146,10 +151,31 @@ void MessageEditor::buildCreateMesTab()
 //   }
 //   fDATA_Widget->setFixedSize(400,28);
 
-	GenerateButton->setParent(generate_Widget);
-	GenerateButton->move(250,0);
 
-   createMesLayout->addWidget(generate_Widget,1,5,1,8,Qt::AlignLeft);
+	genLayout = new QHBoxLayout;
+
+	genLayout->addWidget(cgenID);
+	genLayout->addWidget(cgenDLC);
+	genLayout->addWidget(cgenDATA);
+	genLayout->addWidget(GenerateButton);
+	
+//	cgenID->setParent(generate_Widget);
+//	cgenID->move(50,0);
+//	cgenDLC->setParent(generate_Widget);
+//	cgenDLC->move(100,0);
+//	cgenDATA->setParent(generate_Widget);
+//	cgenDATA->move(150,0);
+
+
+	GenerateButton->setParent(generate_Widget);
+	GenerateButton->move(50,0);
+
+
+	generate_Widget->setLayout(genLayout);
+	generate_Widget->show();
+
+
+ //  createMesLayout->addWidget(generate_Widget,1,5,1,8,Qt::AlignLeft);
 
 
 
@@ -163,8 +189,8 @@ void MessageEditor::buildCreateMesTab()
 
    createMesLayout->addWidget(DATA_Widget,2,5,1,8,Qt::AlignLeft);
    createMesLayout->addWidget(CommitButton,2,13,Qt::AlignLeft);
-//   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
-   createMesLayout->addWidget(generate_Widget,3,1,Qt::AlignLeft);
+
+//   createMesLayout->addWidget(generate_Widget,3,1,Qt::AlignLeft);
 
 
 

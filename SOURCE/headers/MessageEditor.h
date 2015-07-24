@@ -4,6 +4,7 @@
 #include <QtGui/QApplication>
 #include <QWidget>
 #include <QLabel>
+#include <QCheckBox>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QGridLayout>
@@ -75,7 +76,12 @@ private:
     QLineEdit *bLineEdit_DATA1;
     QPushButton *CommitButton;
     QSpinBox *DLC_SpinBox;
+
+    QCheckBox *cgenID;
+    QCheckBox *cgenDLC;
+    QCheckBox *cgenDATA;
     QPushButton *GenerateButton;
+    QHBoxLayout *genLayout;
 
     QRegExp *RegDLC;
     QRegExp *RegID;
