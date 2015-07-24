@@ -159,6 +159,9 @@ void MessageEditor::buildCreateMesTab()
 	genLayout->addWidget(cgenDATA);
 	genLayout->addWidget(GenerateButton);
 	
+
+	
+	
 //	cgenID->setParent(generate_Widget);
 //	cgenID->move(50,0);
 //	cgenDLC->setParent(generate_Widget);
@@ -167,8 +170,8 @@ void MessageEditor::buildCreateMesTab()
 //	cgenDATA->move(150,0);
 
 
-	GenerateButton->setParent(generate_Widget);
-	GenerateButton->move(50,0);
+//	GenerateButton->setParent(generate_Widget);
+//	GenerateButton->move(50,0);
 
 
 	generate_Widget->setLayout(genLayout);
