@@ -133,7 +133,7 @@ void MessageEditor::buildCreateMesTab()
    DATA_Widget->setFixedSize(400,28);
 
 //generate widget
-   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
+//   createMesLayout->addWidget(GenerateButton,3,13,Qt::AlignLeft);
 
 
    generate_Widget = new QWidget;
